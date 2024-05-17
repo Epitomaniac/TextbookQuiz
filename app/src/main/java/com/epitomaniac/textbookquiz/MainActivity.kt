@@ -47,7 +47,6 @@ fun TextBookQuizApp() {
       QuizScreen()
     }
   }
-  
 }
 
 
