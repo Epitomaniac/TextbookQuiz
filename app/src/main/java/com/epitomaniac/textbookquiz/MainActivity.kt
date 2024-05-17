@@ -29,8 +29,9 @@ class MainActivity : ComponentActivity() {
   }
 }
 
+@Suppress("unused")
 enum class QuizAppScreen(val title: String) {
-  LessonsPage(title = "Lessons"), QuizPage(title = "Quiz")
+  LessonsPage("Lessons"), QuizPage("Quiz")
 }
 
 @Composable

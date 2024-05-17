@@ -22,7 +22,6 @@ fun LessonsScreen() {
       modifier = Modifier.align(Alignment.Center)
     )
   }
-  
 }
 
 
