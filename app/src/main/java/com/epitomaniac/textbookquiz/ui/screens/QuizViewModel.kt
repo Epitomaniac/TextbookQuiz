@@ -1,21 +1,16 @@
 package com.epitomaniac.textbookquiz.ui.screens
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.epitomaniac.textbookquiz.data.Question
 import com.epitomaniac.textbookquiz.data.QuestionDatabase
-import com.epitomaniac.textbookquiz.network.QuestionApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 
 data class QuizUiState(
-  val remoteString: String = "",
   val questions: List<Question> = emptyList(),
   val currentQuestionIndex: Int = 0,
-  val selectedAnswers: Map<Int, String> = emptyMap()
+  val selectedAnswers: Map<Int, String> = emptyMap(),
 ) {
   val currentQuestion: Question?
     get() = questions.getOrNull(currentQuestionIndex)
@@ -29,28 +24,12 @@ class QuizViewModel : ViewModel() {
   
   init {
     loadQuestions()
-    fetchRemoteString()
   }
   
   private fun loadQuestions() {
     val questions = questionDatabase.loadQuestions()
     _uiState.value = _uiState.value.copy(questions = questions)
   }
-  
-  private fun fetchRemoteString() {
-    viewModelScope.launch {
-      try {
-        val remoteString = QuestionApi.retrofitService.getQuestions()
-        _uiState.value =
-          _uiState.value.copy(remoteString = remoteString)
-      } catch (e: Exception) {
-        _uiState.value =
-          _uiState.value.copy(remoteString = "error occurred")
-        Log.e("QuizViewModel", "Error fetching remote string", e)
-      }
-    }
-  }
-  
   
   fun selectAnswer(option: String) {
     val currentIndex = _uiState.value.currentQuestionIndex

@@ -89,7 +89,6 @@ fun QuizScreen(
             Text(text = "Next")
           }
         }
-        Text(text = uiState.remoteString, fontSize = fontSize)
       }
     }
   }
