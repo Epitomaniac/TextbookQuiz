@@ -11,6 +11,7 @@ private val retrofit = Retrofit.Builder()
   .addConverterFactory(ScalarsConverterFactory.create())
   .baseUrl(BASE_URL).build()
 
+
 interface QuestionApiService {
   @GET("questions")
   suspend fun getQuestions(): String
