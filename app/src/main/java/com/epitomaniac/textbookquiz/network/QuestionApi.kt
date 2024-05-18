@@ -5,15 +5,14 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 
 
-private const val BASE_URL =
-  "https://www.chesscanon.com/api/"
+private const val BASE_URL = "https://textbookquiz.runflare.run/api/"
 
 private val retrofit = Retrofit.Builder()
   .addConverterFactory(ScalarsConverterFactory.create())
   .baseUrl(BASE_URL).build()
 
 interface QuestionApiService {
-  @GET("questions/")
+  @GET("questions")
   suspend fun getQuestions(): String
   
 }
