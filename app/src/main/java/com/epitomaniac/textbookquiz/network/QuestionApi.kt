@@ -8,12 +8,13 @@ import retrofit2.Retrofit
 import retrofit2.http.GET
 
 
-private const val BASE_URL = "http://textbookquiz.runflare.run/api/"
+private const val BASE_URL = "https://chesscanon.com/api/"
+
+private val json = Json { ignoreUnknownKeys = true }
 
 private val retrofit = Retrofit.Builder()
-  .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+  .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
   .baseUrl(BASE_URL).build()
-
 
 interface QuestionApiService {
   @GET("questions")

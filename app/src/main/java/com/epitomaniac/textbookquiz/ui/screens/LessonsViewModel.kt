@@ -30,7 +30,7 @@ class LessonsViewModel : ViewModel() {
         _uiState.value = _uiState.value.copy(remoteData = remoteData)
         QuestionRepository.setQuestions(remoteData) // Store in a shared repository
       } catch (e: Exception) {
-        Log.e("LessonsViewModel", "Error fetching remote string", e)
+        Log.e("LessonsViewModel", "Error fetching remote data", e)
       }
     }
   }

@@ -1,7 +1,7 @@
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.jetbrains.kotlin.android)
-  alias(libs.plugins.jetbrains.kotlin.serialization)
+  id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
 }
 
 android {
@@ -52,11 +52,12 @@ android {
 }
 
 dependencies { // Kotlin serialization
-  implementation(libs.kotlinx.serialization.json)
-  // Retrofit
-  implementation(libs.retrofit) // Retrofit with Kotlin serialization Converter
-  implementation(libs.retrofit2.kotlinx.serialization.converter)
-  implementation(libs.okhttp)
+  implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
+  implementation("com.squareup.retrofit2:retrofit:2.9.0")
+  implementation("io.coil-kt:coil-compose:2.4.0")
+  implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
+
   implementation(libs.androidx.lifecycle.viewmodel.compose)
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.lifecycle.runtime.ktx)

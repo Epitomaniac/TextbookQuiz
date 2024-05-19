@@ -27,7 +27,7 @@ import com.epitomaniac.textbookquiz.data.theme.TextbookQuizTheme
 @Composable
 fun QuizScreen(
   modifier: Modifier = Modifier,
-  quizViewModel: QuizViewModel = viewModel()
+  quizViewModel: QuizViewModel = viewModel(),
 ) {
   val uiState by quizViewModel.uiState.collectAsState()
   val fontSize = 24.sp

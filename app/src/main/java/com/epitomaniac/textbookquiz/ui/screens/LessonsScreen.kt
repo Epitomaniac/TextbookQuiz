@@ -26,8 +26,7 @@ fun LessonsScreen(
   
   Column(
     modifier = Modifier
-      .fillMaxSize()
-      .padding(top = 24.dp),
+      .fillMaxSize().padding(top = 36.dp),
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
     Text(
