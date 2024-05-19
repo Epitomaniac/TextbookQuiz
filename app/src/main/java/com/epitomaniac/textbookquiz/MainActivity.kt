@@ -43,9 +43,7 @@ fun TextBookQuizApp() {
   ) {
     composable(route = QuizAppScreen.LessonsPage.name) {
       LessonsScreen(onNextButtonClicked = {
-        navController.navigate(
-          QuizAppScreen.QuizPage.name
-        )
+        navController.navigate(QuizAppScreen.QuizPage.name)
       })
     }
     composable(route = QuizAppScreen.QuizPage.name) {

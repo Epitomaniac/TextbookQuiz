@@ -3,6 +3,8 @@ package com.epitomaniac.textbookquiz.ui.screens
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.epitomaniac.textbookquiz.data.Question
+import com.epitomaniac.textbookquiz.data.QuestionRepository
 import com.epitomaniac.textbookquiz.network.QuestionApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -10,7 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 data class LessonsUiState(
-  val remoteString: String = "",
+  val remoteData: List<Question>? = null,
 )
 
 class LessonsViewModel : ViewModel() {
@@ -18,21 +20,18 @@ class LessonsViewModel : ViewModel() {
   val uiState: StateFlow<LessonsUiState> = _uiState.asStateFlow()
   
   init {
-    fetchRemoteString()
+    fetchRemoteData()
   }
   
-  private fun fetchRemoteString() {
+  private fun fetchRemoteData() {
     viewModelScope.launch {
       try {
-        val remoteString = QuestionApi.retrofitService.getQuestions()
-        _uiState.value =
-          _uiState.value.copy(remoteString = remoteString)
+        val remoteData = QuestionApi.retrofitService.getQuestions()
+        _uiState.value = _uiState.value.copy(remoteData = remoteData)
+        QuestionRepository.setQuestions(remoteData) // Store in a shared repository
       } catch (e: Exception) {
-        _uiState.value =
-          _uiState.value.copy(remoteString = "error occurred")
         Log.e("LessonsViewModel", "Error fetching remote string", e)
       }
     }
   }
-  
 }

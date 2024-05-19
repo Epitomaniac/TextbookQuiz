@@ -23,6 +23,7 @@ fun LessonsScreen(
   lessonsViewModel: LessonsViewModel = viewModel(),
 ) {
   val uiState by lessonsViewModel.uiState.collectAsState()
+  
   Column(
     modifier = Modifier
       .fillMaxSize()
@@ -34,13 +35,15 @@ fun LessonsScreen(
       fontSize = 36.sp,
     )
     Button(
-      onClick = onNextButtonClicked,
+      onClick = {
+        uiState.remoteData?.let {
+          onNextButtonClicked()
+        }
+      },
       modifier = Modifier.padding(24.dp)
-    ) { Text("Quiz Screen") }
-    Text(text = uiState.remoteString, fontSize = 24.sp)
+    ) { Text("Lesson 1") }
   }
 }
-
 
 @Preview(showBackground = true)
 @Composable

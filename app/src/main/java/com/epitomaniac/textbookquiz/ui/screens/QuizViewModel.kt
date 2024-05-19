@@ -2,7 +2,7 @@ package com.epitomaniac.textbookquiz.ui.screens
 
 import androidx.lifecycle.ViewModel
 import com.epitomaniac.textbookquiz.data.Question
-import com.epitomaniac.textbookquiz.data.QuestionDatabase
+import com.epitomaniac.textbookquiz.data.QuestionRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,14 +20,12 @@ class QuizViewModel : ViewModel() {
   private val _uiState = MutableStateFlow(QuizUiState())
   val uiState: StateFlow<QuizUiState> = _uiState.asStateFlow()
   
-  private val questionDatabase = QuestionDatabase()
-  
   init {
     loadQuestions()
   }
   
   private fun loadQuestions() {
-    val questions = questionDatabase.loadQuestions()
+    val questions = QuestionRepository.getQuestions()
     _uiState.value = _uiState.value.copy(questions = questions)
   }
   
@@ -55,5 +53,4 @@ class QuizViewModel : ViewModel() {
     _uiState.value =
       _uiState.value.copy(currentQuestionIndex = previousIndex)
   }
-  
 }
