@@ -15,6 +15,7 @@ import com.epitomaniac.textbookquiz.data.theme.TextbookQuizTheme
 import com.epitomaniac.textbookquiz.ui.screens.LessonsScreen
 import com.epitomaniac.textbookquiz.ui.screens.QuizScreen
 
+
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

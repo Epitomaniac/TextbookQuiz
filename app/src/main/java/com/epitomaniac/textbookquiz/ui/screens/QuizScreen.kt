@@ -40,6 +40,13 @@ fun QuizScreen(
         top = 56.dp, start = 16.dp, end = 16.dp
       )
     ) {
+      Row(modifier = Modifier.fillMaxWidth()) {
+        Text(
+          text = "Question ${uiState.currentQuestionIndex + 1}/${uiState.questions.size}",
+          fontSize = 24.sp
+        )
+      }
+      Spacer(modifier = Modifier.height(36.dp))
       uiState.currentQuestion?.let { question ->
         Text(
           text = question.question,
